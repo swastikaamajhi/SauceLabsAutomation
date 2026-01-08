@@ -59,8 +59,9 @@ time.sleep(5)
 # driver.execute_script("arguments[0].click();", forgot_password)
 # forgot_password.click()
 
-# function banauney aba individually
 
+# function banauney aba individually
+#
 def click_element(driver,xpath):
     element=driver.find_element(By.XPATH, xpath)
     element.click()
@@ -116,6 +117,41 @@ print("password entered")
 CreateButton="//input[@value='Create']"
 click_element(driver,CreateButton)
 print("Clicked on create button")
+
+logout_element=driver.find_element((By.XPATH, "//div[@class='seven columns offset-by-one desktop']//a[@id='customer_logout_link']"))
+if logout_element:
+    print("Registration successfull- logout element found successfully")
+    assert True
+else:
+    print("Registration is not successfull- no redirect logout element is not found")
+    assert False
+
+#navigate to login page
+Login="//div[@class='seven columns offset-by-one desktop']//a[@id='customer_login_link']"
+click_element(driver,Login)
+print("click on login link")
+
+Customer_email="//input[@id='customer_email']"
+send_keys_to_element(driver, Customer_email, "swastika.gmt3@gmail.com")
+print("customer email entered")
+
+Customer_Password="//input[@id='customer_password']"
+send_keys_to_element(driver,Customer_Password, "Swastika@123")
+print("Customer password entered")
+
+SignIn_button="//input[@value='Sign In']"
+click_element(driver, SignIn_button)
+print("Signin button clicked")
+
+#Navigate to About us page
+About_Us="//div[@class='seven columns offset-by-one desktop']//a[normalize-space()='About Us']"
+click_element(driver,About_Us)
+prnit("click on About us link")
+
+#Navigate to Search page
+Search="//div[@class='seven columns offset-by-one desktop']//a[normalize-space()='Search']"
+click_element(driver,Search)
+print("click on Search link")
 
 time.sleep(15)
 driver.quit()
